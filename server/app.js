@@ -30,7 +30,7 @@ cloudinary.v2.config({
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:3000", // frontend origin
+  origin: "https://live-e-com-app.netlify.app", // frontend origin
   credentials: true               // allow sending cookies
 }));
 
