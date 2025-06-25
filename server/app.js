@@ -1,10 +1,11 @@
 import express from "express";
+import "colors";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
-import connectDB  from "./config/db.js";
+import connectDB from "./config/db.js";
 import Stripe from "stripe";
 import helmet from "helmet";
 import MongoSanitize from "express-mongo-sanitize";
@@ -16,7 +17,7 @@ dotenv.config();
 connectDB();
 
 /// stripe Configuration 
-export  const stripe = new Stripe(process.env.STRIPE_API_SECRET)
+export const stripe = new Stripe(process.env.STRIPE_API_SECRET)
 
 
 //cloudinary Config
@@ -54,12 +55,18 @@ import sanitize from "mongo-sanitize";
 
 app.use("/api", testRoutes);
 app.use("/api/user", userRoutes);
-app.use("/api/product",productRoutes);
+app.use("/api/product", productRoutes);
 app.use('/api/category', categoryRoutes)
 app.use('/api/order', orderRoutes)
 
+
+
 //port
 const PORT = process.env.PORT || 8080;
+
+app.get("/", (req, res) => {
+  res.send("Hello from E-commerce API");
+});
 
 // listen
 app.listen(PORT, () => {
